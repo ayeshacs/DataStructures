@@ -1,0 +1,58 @@
+public class LinkedList
+{
+    Node head;
+    
+    public class Node
+    {
+        int data;
+        Node next;
+        
+        Node(int d)
+        {
+            data = d;
+            next = null;
+        }
+    }
+    
+    void addNode(int d)
+    {
+        Node curr = head;
+        Node newNode = new Node(d);
+        if(curr==null)
+        {
+            head = newNode;
+            return;
+        }
+        
+        else
+        {
+            //traversing to the end
+            while(curr.next!=null)
+                curr = curr.next;
+                
+            curr.next = newNode;
+            return;
+            
+        }
+    }
+    
+    void printList()
+    {
+        Node curr = head;
+        
+        while(curr!=null)
+        {
+            System.out.println(curr.data);
+            curr = curr.next;
+        }
+    }
+
+    public static void main(String []args)
+     {
+        LinkedList ll = new LinkedList();
+        ll.addNode(1);
+        ll.addNode(2);
+        ll.addNode(3);
+        ll.printList();
+     }
+}
