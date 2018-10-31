@@ -46,7 +46,32 @@ public class LinkedList
             curr = curr.next;
         }
     }
-
+    
+    
+    //160. Intersection of Two Linked Lists (https://leetcode.com/problems/intersection-of-two-linked-lists/description/)
+    public Node getIntersectionNode(Node headA, Node headB) 
+    {
+        Node p1 = headA;
+        Node p2 = headB;
+        
+        if (headA==null || headB ==null)
+            return null;
+        
+        while(p1!=p2)
+        {
+            if(p1!=null)
+                p1=p1.next;
+            else
+                p1=headB;
+            
+            if(p2!=null)
+                p2=p2.next;
+            else
+                p2=headA;
+        }
+        return p1;
+    }
+    
     public static void main(String []args)
      {
         LinkedList ll = new LinkedList();
