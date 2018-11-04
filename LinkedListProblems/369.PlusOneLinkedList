@@ -1,0 +1,35 @@
+/**
+ * Definition for ListNode
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+
+public class Solution {
+    /**
+     * @param head: the first Node
+     * @return: the answer after plus one
+     */
+    public ListNode plusOne(ListNode head) 
+    {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode i = dummy;
+        ListNode j = dummy;
+        while(j.next!=null){
+            j = j.next;
+            if(j.val != 9) i = j;
+        }
+        i.val++;//i is last non 9 digit, add 1 to it and set rest be 0
+        while(i.next!=null){
+            i = i.next;
+            i.val = 0;
+        }
+        return dummy.val!=0?dummy:head;
+    }
+}
