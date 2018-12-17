@@ -1,0 +1,71 @@
+/*
+
+Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
+
+Example 1:
+
+Input: [3,0,1]
+Output: 2
+Example 2:
+
+Input: [9,6,4,2,3,5,7,0,1]
+Output: 8
+
+*/
+
+/*
+Approach 1:
+Hashmap approach: 
+The array should have had all the numbers from 0 to n-1 and a length n. But it is missing one numbers.
+Expected length n is current_length+1. Check what number it does not have from 0 to n-1.
+HashSet allows us to do O(1) searching.
+
+*/
+class Solution 
+{
+    public int missingNumber(int[] a) 
+    {
+        Set<Integer> numSet = new HashSet<>();
+        
+        //copying all numbers to a hashSet
+        for(int i=0; i< a.length; i++)
+        {
+            numSet.add(a[i]);
+        }
+        
+        int expected_length = a.length+1;
+        
+        for(int j=0; j< expected_length; j++)
+        {
+            if(!(numSet.contains(j)))
+                return j;
+        }
+        
+        return -1;
+    }
+}
+
+//Approach 2: Sum of series. sum of series {0,1,2,3,...n} = n(n+1)/2. So input is [3,1,0]. 
+//lets get sum of [0,1,2,3] which is 3(3+1)/2.
+
+class Solution2 {
+    public int missingNumber2(int[] a) 
+    {
+        //expected elements were 0 to n-1. In Math, we care from 1 to n-1. 
+        //For input [0,1,3], our n is 3; We need sum of [1,2,3] 
+        int n = a.length;
+        
+        int expectedSum = n*(n+1)/2;
+        int realSum=0;
+        
+        for (int i=0; i<n; i++)
+        {
+            realSum = realSum + a[i];
+        }
+        
+        int missingNumber = expectedSum - realSum;
+        
+        return missingNumber;
+        
+    }
+}
